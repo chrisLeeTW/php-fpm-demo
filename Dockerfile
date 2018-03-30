@@ -21,4 +21,6 @@ COPY --from=build-stage /code/ /code
 
 WORKDIR /code
 
-RUN chown -R www-data.www-data /code
+RUN ln -s /proc/self/fd/1 /code/storage/logs/laravel.log && \
+    chown -R www-data.www-data /code
+
