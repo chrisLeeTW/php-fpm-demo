@@ -20,3 +20,5 @@ FROM php:7.0-fpm-jessie
 COPY --from=build-stage /code/ /code
 
 WORKDIR /code
+
+RUN chown -R www-data.www-data /code
