@@ -12,3 +12,4 @@
 */
 
 Route::get('/api/add_job', 'IndexController@index');
+Route::get('/api/iLoveErrors', 'IndexController@iLoveErrors');

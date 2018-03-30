@@ -13,4 +13,9 @@ class IndexController extends Controller
         $this->dispatch($job);
         return response()->json(["status" => "ok"]);
     }
+
+    public function iLoveErrors(Request $request)
+    {
+        throw new \Exception("???? WTF ????");
+    }
 }
