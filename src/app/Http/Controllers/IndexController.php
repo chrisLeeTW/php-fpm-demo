@@ -9,7 +9,7 @@ class IndexController extends Controller
 {
     public function index(Request $request)
     {
-        return response()->json(["status" => "ok", "uuid" => uniqid(), "branch" => "master"]);
+        return response()->json(["status" => "ok", "uuid" => uniqid(), "branch" => "develop"]);
     }
 
     public function addJobs(Request $request)
