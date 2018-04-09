@@ -9,6 +9,11 @@ class IndexController extends Controller
 {
     public function index(Request $request)
     {
+        return response()->json(["status" => "ok", "uuid" => uniqid(), "branch" => "master"]);
+    }
+
+    public function addJobs(Request $request)
+    {
         $job = (new TestJob())->onQueue('redis');
         $this->dispatch($job);
         return response()->json(["status" => "ok"]);

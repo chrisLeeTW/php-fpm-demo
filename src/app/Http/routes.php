@@ -11,5 +11,6 @@
 |
 */
 
-Route::get('/api/add_job', 'IndexController@index');
+Route::get('/api/index', 'IndexController@index');
+Route::get('/api/add_job', 'IndexController@addJobs');
 Route::get('/api/iLoveErrors', 'IndexController@iLoveErrors');

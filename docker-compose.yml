@@ -1,0 +1,42 @@
+version: '2.3'
+services:
+  traefik:
+    image: traefik
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - ./config/traefik.toml:/etc/traefik/traefik.toml:ro
+    network_mode: bridge
+    ports:
+      - 80
+      - 8080
+    scale: 2
+    labels:
+      - traefik.enable=false
+  web:
+    image: protosschris/nginx-demo
+    network_mode: bridge
+    links:
+      - backend
+    scale: 3
+  backend:
+    build:
+      context: ./
+    image: protosschris/php-fpm-demo
+    environment:
+      - QUEUE_DRIVER=redis
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - APP_ENV=prod
+      - APP_DEBUG=false
+      - APP_KEY=3gEDR3TQzpXhe5NSqQ9DwGX4QEi0l3Zm
+      - APP_LOG=errorlog
+    network_mode: bridge
+    links:
+      - redis
+    labels:
+      - traefik.enable=false
+  redis:
+    image: redis:2.8
+    network_mode: bridge
+    labels:
+      - traefik.enable=false
